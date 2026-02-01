@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Anuuu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ffb6c1, #ffc0cb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      text-align: center;
+    }
+
+    .screen {
+      display: none;
+      padding: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1 {
+      color: #b30059;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #800040;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 15px;
+      background-color: #ff4d88;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #999;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 5s linear infinite;
+      color: #ff3366;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    .gallery img {
+      width: 120px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="screen1">
+    <h1>Hello Anuuiiieee 💕</h1>
+    <p>I have something important to ask you ❓</p>
+    <button onclick="nextScreen(2)">Next</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="screen2">
+    <p>You make my days brighter ☀️</p>
+    <p>And my nights more peaceful 🌙</p>
+    <p>You are my everything, nothing matters when you are with me 🥺❤️</p>
+    <button onclick="nextScreen(3)">Next</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="screen3">
+    <h1>So… 💖</h1>
+    <p>I just wanted to ask you one thing…</p>
+    <button onclick="nextScreen(4)">Next</button>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen" id="screen4">
+    <h1>Will you be my Valentine Anuuu? 💘</h1>
+    <button onclick="yesClicked()">Yes 😍</button>
+    <button id="noBtn" onclick="noClicked()">No 🙈</button>
+  </div>
+
+  <!-- Screen 5 -->
+  <div class="screen" id="screen5">
+    <h1>Thank you my puchku 💕</h1>
+    <p>I love you sooo much 🥹🫶❤️‍🔥</p>
+    <p>Kabhi bhi 1st year me socha nahi tha ki Anuja Kakad ke liye ye sab karuga mai 😭😂</p>
+    <button onclick="nextScreen(6)">Next</button>
+  </div>
+
+  <!-- Screen 6 -->
+  <div class="screen" id="screen6">
+    <h1>Ready for something special? 😏</h1>
+    <button onclick="nextScreen(7)">Let's go to the final page bub 🦩</button>
+  </div>
+
+  <!-- Screen 7 (Final Page) -->
+  <div class="screen" id="screen7">
+    <h1>Forever and Always 💕</h1>
+
+    <audio id="loveSong" autoplay loop>
+      <source src="./perfect.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="gallery">
+      <img src="./pic1.jpg">
+      <img src="./pic2.jpg">
+      <img src="./pic3.jpg">
+    </div>
+
+    <p>This Valentine and every Valentine after that is yours ❤️</p>
+    <p>I choose you. Always. 😘</p>
+  </div>
+
+  <script>
+    let noCount = 0;
+
+    function nextScreen(n) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById("screen" + n).classList.add("active");
+
+      if (n === 7) {
+        document.getElementById("loveSong").play();
+      }
+    }
+
+    function noClicked() {
+      const noBtn = document.getElementById("noBtn");
+      noCount++;
+
+      if (noCount === 1) noBtn.innerText = "Are you sure? 😳";
+      else if (noCount === 2) noBtn.innerText = "Think again 😏";
+      else if (noCount === 3) noBtn.innerText = "Rukk tereko toh dekhta hu rukk tu rukk 😈";
+      else if (noCount === 4) noBtn.innerText = "Chup chap Yes pe click kar 😡😡";
+      else noBtn.style.display = "none";
+    }
+
+    function yesClicked() {
+      nextScreen(5);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
